@@ -1,0 +1,38 @@
+<view class="page letter-page">
+  <view class="topbar">
+    <view class="brand">
+      <text class="brand-name">慢信件</text>
+      <text class="brand-note">低频、长文、带着上下文回复。这里不追求秒回。</text>
+    </view>
+  </view>
+
+  <view class="letter-list">
+    <view
+      wx:for="{{letters}}"
+      wx:key="_id"
+      class="letter-item card {{activeLetter._id === item._id ? 'active' : ''}}"
+      data-id="{{item._id}}"
+      bindtap="selectLetter"
+    >
+      <view class="letter-title">{{item.partner}} · {{item.topic}}</view>
+      <view class="letter-status">{{item.status}} · {{item.updatedAt}}</view>
+      <view class="letter-last">{{item.lastText}}</view>
+    </view>
+  </view>
+
+  <view class="section-title">给 {{activeLetter.partner}} 回信</view>
+  <view class="write-card card">
+    <view class="muted-box">慢信件默认只开放文字。图片作为补充材料，语音需要建立一次文字深聊后解锁，视频只用于高信任主题对谈。</view>
+    <textarea
+      class="textarea letter-input"
+      maxlength="1600"
+      value="{{draft}}"
+      placeholder="写清楚你的理解、回应和新的问题。可以慢一点，但不要敷衍。"
+      bindinput="onDraftInput"
+    />
+    <view class="letter-actions">
+      <button class="secondary-button">补充图片</button>
+      <button class="primary-button" bindtap="sendLetter">寄出信件</button>
+    </view>
+  </view>
+</view>

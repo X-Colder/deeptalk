@@ -1,0 +1,57 @@
+<view class="page home-page">
+  <view class="topbar">
+    <view class="brand">
+      <text class="brand-name">DeepTalk</text>
+      <text class="brand-note">为真诚、清醒、愿意认真表达的人，保留一个慢一点的同频空间。</text>
+    </view>
+    <button class="quiet-button top-action" bindtap="writeQuestion">提问</button>
+  </view>
+
+  <view class="mood-strip">
+    <button
+      wx:for="{{moodOptions}}"
+      wx:key="*this"
+      class="mood-item {{activeMood === item ? 'active' : ''}}"
+      data-mood="{{item}}"
+      bindtap="selectMood"
+    >
+      {{item}}
+    </button>
+  </view>
+
+  <view class="focus-card card">
+    <view class="focus-kicker">今日深度问题</view>
+    <view class="focus-title">什么样的沟通，会让你愿意把真实想法说出来？</view>
+    <view class="focus-meta">先写出你的判断，再决定是否进入深聊。</view>
+  </view>
+
+  <view class="section-title">值得认真回答的问题</view>
+
+  <view wx:if="{{loading}}" class="muted-box">正在整理今天的问题和高质量回答。</view>
+
+  <view
+    wx:for="{{questions}}"
+    wx:key="_id"
+    class="question-card card"
+    data-id="{{item._id}}"
+    bindtap="openQuestion"
+  >
+    <view class="question-head">
+      <text class="question-mood">{{item.mood}}</text>
+      <text class="question-time">{{item.createdAt}}</text>
+    </view>
+    <view class="question-title">{{item.title}}</view>
+    <view class="question-intro">{{item.intro}}</view>
+    <view class="tag-row">
+      <text wx:for="{{item.qualityTags}}" wx:key="*this" class="tag">{{item}}</text>
+    </view>
+    <view class="answer-preview">
+      <view class="answer-author">{{item.featuredAnswer.userName}} · {{item.featuredAnswer.style}}</view>
+      <view class="answer-text">{{item.featuredAnswer.text}}</view>
+    </view>
+    <view class="question-foot">
+      <text>{{item.answerCount}} 个认真回答</text>
+      <text>{{item.inviteCount}} 次深聊邀请</text>
+    </view>
+  </view>
+</view>

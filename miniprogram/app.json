@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/question/question",
+    "pages/compose/compose",
+    "pages/letter/letter"
+  ],
+  "window": {
+    "navigationBarTitleText": "DeepTalk",
+    "navigationBarBackgroundColor": "#F5F7F4",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5F7F4",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#77807C",
+    "selectedColor": "#26413C",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "问题"
+      },
+      {
+        "pagePath": "pages/compose/compose",
+        "text": "表达"
+      },
+      {
+        "pagePath": "pages/letter/letter",
+        "text": "信件"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

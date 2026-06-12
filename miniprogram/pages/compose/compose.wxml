@@ -1,0 +1,71 @@
+<view class="page compose-page">
+  <view class="topbar">
+    <view class="brand">
+      <text class="brand-name">认真表达</text>
+      <text class="brand-note">这里先看你怎样思考，再决定谁值得靠近。</text>
+    </view>
+  </view>
+
+  <view class="mode-tabs">
+    <button
+      wx:for="{{modes}}"
+      wx:key="*this"
+      class="mode-tab {{activeMode === item ? 'active' : ''}}"
+      data-mode="{{item}}"
+      bindtap="switchMode"
+    >
+      {{item}}
+    </button>
+  </view>
+
+  <view class="compose-card card">
+    <input
+      class="topic-input"
+      maxlength="60"
+      value="{{topic}}"
+      placeholder="{{activeMode === '提出问题' ? '写下一个值得讨论的问题' : '你正在回应哪个问题'}}"
+      bindinput="onTopicInput"
+    />
+    <textarea
+      class="textarea main-textarea"
+      maxlength="1200"
+      value="{{content}}"
+      placeholder="请写具体经历、真实判断和你愿意公开的边界。避免空泛表态、攻击他人或用真诚包装冒犯。"
+      bindinput="onContentInput"
+    />
+
+    <view class="counter-row">
+      <text>{{content.length}} / 1200</text>
+      <text>至少 80 字</text>
+    </view>
+  </view>
+
+  <view class="section-title">表达质量标签</view>
+  <view class="tag-row quality-tags">
+    <button
+      wx:for="{{availableTags}}"
+      wx:key="name"
+      class="tag tag-button {{item.selected ? 'selected' : ''}}"
+      data-tag="{{item.name}}"
+      bindtap="toggleTag"
+    >
+      {{item.name}}
+    </button>
+  </view>
+
+  <view class="section-title">多媒体接入</view>
+  <view class="media-tools card">
+    <button
+      wx:for="{{mediaItems}}"
+      wx:key="type"
+      class="media-tool {{item.enabled ? '' : 'disabled'}}"
+      data-enabled="{{item.enabled}}"
+      bindtap="chooseImage"
+    >
+      <view class="media-label">{{item.label}}</view>
+      <view class="media-hint">{{item.hint}}</view>
+    </button>
+  </view>
+
+  <button class="primary-button submit-button" bindtap="submit">提交表达</button>
+</view>

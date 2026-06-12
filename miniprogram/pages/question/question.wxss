@@ -1,0 +1,149 @@
+.question-page {
+  padding-bottom: 80rpx;
+}
+
+.question-main,
+.answer-card,
+.invite-card,
+.media-card {
+  padding: 28rpx;
+}
+
+.question-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+  color: #6f7b76;
+  font-size: 23rpx;
+}
+
+.question-title {
+  margin-top: 20rpx;
+  color: #203632;
+  font-size: 38rpx;
+  line-height: 1.42;
+  font-weight: 760;
+}
+
+.question-intro {
+  margin: 18rpx 0 22rpx;
+  color: #626f6a;
+  font-size: 26rpx;
+  line-height: 1.65;
+}
+
+.profile-line {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+}
+
+.avatar-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  color: #fffdf8;
+  background: #647d73;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.answer-name {
+  color: #263b37;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.answer-style {
+  margin-top: 6rpx;
+  color: #73807a;
+  font-size: 23rpx;
+}
+
+.answer-body {
+  margin-top: 24rpx;
+  color: #2b3734;
+  font-size: 29rpx;
+  line-height: 1.82;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12rpx;
+  margin-top: 26rpx;
+}
+
+.score-item {
+  min-height: 118rpx;
+  padding: 18rpx 12rpx;
+  border-radius: 8rpx;
+  background: #eef2ec;
+  text-align: center;
+}
+
+.score-value {
+  display: block;
+  color: #2f5048;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.score-label {
+  display: block;
+  margin-top: 10rpx;
+  color: #71807a;
+  font-size: 21rpx;
+  line-height: 1.35;
+}
+
+.invite-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.invite-input {
+  min-height: 230rpx;
+}
+
+.media-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+  padding: 22rpx 0;
+  border-bottom: 1rpx solid #dde6e0;
+}
+
+.media-row:last-child {
+  border-bottom: 0;
+}
+
+.media-row.locked {
+  opacity: 0.62;
+}
+
+.media-name {
+  color: #253a36;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.media-desc {
+  margin-top: 8rpx;
+  color: #69756f;
+  font-size: 23rpx;
+  line-height: 1.48;
+}
+
+.media-state {
+  flex: none;
+  min-width: 92rpx;
+  text-align: right;
+  color: #7a5c2a;
+  font-size: 23rpx;
+}

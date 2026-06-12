@@ -1,0 +1,60 @@
+.letter-page {
+  padding-bottom: 120rpx;
+}
+
+.letter-list {
+  display: flex;
+  gap: 16rpx;
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 10rpx;
+}
+
+.letter-item {
+  flex: 0 0 560rpx;
+  min-height: 206rpx;
+  padding: 22rpx;
+  opacity: 0.82;
+}
+
+.letter-item.active {
+  border-color: #8ea79d;
+  background: #ffffff;
+  opacity: 1;
+}
+
+.letter-title {
+  color: #263a36;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.letter-status {
+  margin-top: 10rpx;
+  color: #7a5c2a;
+  font-size: 22rpx;
+}
+
+.letter-last {
+  margin-top: 14rpx;
+  color: #64706b;
+  font-size: 24rpx;
+  line-height: 1.55;
+}
+
+.write-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+  padding: 22rpx;
+}
+
+.letter-input {
+  min-height: 440rpx;
+}
+
+.letter-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+}

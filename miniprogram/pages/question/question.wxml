@@ -1,0 +1,71 @@
+<view class="page question-page">
+  <view wx:if="{{loading}}" class="muted-box">正在读取问题。</view>
+
+  <block wx:if="{{question}}">
+    <view class="question-main card">
+      <view class="question-meta">
+        <text>{{question.mood}}</text>
+        <text>{{question.createdAt}}</text>
+      </view>
+      <view class="question-title">{{question.title}}</view>
+      <view class="question-intro">{{question.intro}}</view>
+      <view class="tag-row">
+        <text wx:for="{{question.qualityTags}}" wx:key="*this" class="tag blue">{{item}}</text>
+      </view>
+    </view>
+
+    <view class="section-title">回答即名片</view>
+    <view class="answer-card card">
+      <view class="profile-line">
+        <view class="avatar-mark">{{question.avatarInitial}}</view>
+        <view>
+          <view class="answer-name">{{question.featuredAnswer.userName}}</view>
+          <view class="answer-style">{{question.featuredAnswer.style}}</view>
+        </view>
+      </view>
+      <view class="answer-body">{{question.featuredAnswer.text}}</view>
+      <view class="score-grid">
+        <view class="score-item">
+          <text class="score-value">具体</text>
+          <text class="score-label">不是空泛表态</text>
+        </view>
+        <view class="score-item">
+          <text class="score-value">自省</text>
+          <text class="score-label">能反观自己</text>
+        </view>
+        <view class="score-item">
+          <text class="score-value">尊重</text>
+          <text class="score-label">保留他人边界</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="section-title">申请继续深聊</view>
+    <view class="invite-card card">
+      <textarea
+        class="textarea invite-input"
+        maxlength="400"
+        value="{{inviteReason}}"
+        placeholder="写下你欣赏这段表达的原因，以及你想继续聊的具体问题。至少 20 字。"
+        bindinput="onReasonInput"
+      />
+      <button class="primary-button" bindtap="sendInvite">发送同频邀请</button>
+      <button class="secondary-button" bindtap="writeAnswer">我也想回答这个问题</button>
+    </view>
+
+    <view class="section-title">媒介边界</view>
+    <view class="media-card card">
+      <view
+        wx:for="{{mediaPolicy}}"
+        wx:key="name"
+        class="media-row {{item.active ? '' : 'locked'}}"
+      >
+        <view>
+          <view class="media-name">{{item.name}}</view>
+          <view class="media-desc">{{item.desc}}</view>
+        </view>
+        <text class="media-state">{{item.active ? '开放' : '待解锁'}}</text>
+      </view>
+    </view>
+  </block>
+</view>
