@@ -25,6 +25,26 @@
   font-weight: 760;
 }
 
+.asker-box {
+  margin-top: 18rpx;
+  padding: 20rpx;
+  border-radius: 8rpx;
+  background: #eef4f0;
+}
+
+.asker-name {
+  color: #27433d;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.asker-note {
+  margin-top: 8rpx;
+  color: #68756f;
+  font-size: 23rpx;
+  line-height: 1.48;
+}
+
 .question-intro {
   margin: 18rpx 0 22rpx;
   color: #626f6a;
@@ -70,6 +90,33 @@
   line-height: 1.82;
 }
 
+.answer-tags {
+  margin-top: 20rpx;
+}
+
+.evaluation-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+  padding: 24rpx;
+}
+
+.evaluation-note {
+  color: #68756f;
+  font-size: 24rpx;
+  line-height: 1.55;
+}
+
+.tag-button {
+  min-height: 54rpx;
+  border-radius: 999rpx;
+}
+
+.tag-button.selected {
+  color: #ffffff;
+  background: #647d73;
+}
+
 .score-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -108,6 +155,17 @@
 
 .invite-input {
   min-height: 230rpx;
+}
+
+.invite-count {
+  margin-top: -8rpx;
+  color: #7c8782;
+  font-size: 22rpx;
+  text-align: right;
+}
+
+.invite-count.ready {
+  color: #2f5048;
 }
 
 .media-row {

@@ -37,13 +37,14 @@
     bindtap="openQuestion"
   >
     <view class="question-head">
-      <text class="question-mood">{{item.mood}}</text>
+      <text class="question-mood">{{item.mood}} · {{item.visibilityLabel}}</text>
       <text class="question-time">{{item.createdAt}}</text>
     </view>
+    <view class="question-author">提问者：{{item.authorDisplay}}</view>
     <view class="question-title">{{item.title}}</view>
     <view class="question-intro">{{item.intro}}</view>
     <view class="tag-row">
-      <text wx:for="{{item.qualityTags}}" wx:key="*this" class="tag">{{item}}</text>
+      <text wx:for="{{item.communityTags}}" wx:key="*this" class="tag">{{item}}</text>
     </view>
     <view class="answer-preview">
       <view class="answer-author">{{item.featuredAnswer.userName}} · {{item.featuredAnswer.style}}</view>

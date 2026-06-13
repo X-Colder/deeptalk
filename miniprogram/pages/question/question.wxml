@@ -4,13 +4,17 @@
   <block wx:if="{{question}}">
     <view class="question-main card">
       <view class="question-meta">
-        <text>{{question.mood}}</text>
+        <text>{{question.mood}} · {{question.visibilityLabel}}</text>
         <text>{{question.createdAt}}</text>
+      </view>
+      <view class="asker-box">
+        <view class="asker-name">提问者：{{question.authorDisplay}}</view>
+        <view class="asker-note">{{question.authorPortrait}}</view>
       </view>
       <view class="question-title">{{question.title}}</view>
       <view class="question-intro">{{question.intro}}</view>
       <view class="tag-row">
-        <text wx:for="{{question.qualityTags}}" wx:key="*this" class="tag blue">{{item}}</text>
+        <text wx:for="{{question.communityTags}}" wx:key="*this" class="tag blue">{{item}}</text>
       </view>
     </view>
 
@@ -24,6 +28,9 @@
         </view>
       </view>
       <view class="answer-body">{{question.featuredAnswer.text}}</view>
+      <view class="tag-row answer-tags">
+        <text wx:for="{{question.featuredAnswer.communityTags}}" wx:key="*this" class="tag">{{item}}</text>
+      </view>
       <view class="score-grid">
         <view class="score-item">
           <text class="score-value">具体</text>
@@ -40,17 +47,37 @@
       </view>
     </view>
 
+    <view class="section-title">读者评价</view>
+    <view class="evaluation-card card">
+      <view class="evaluation-note">标签不由回答者自选，而由读者评价和内容分析逐步形成。</view>
+      <view class="tag-row">
+        <button
+          wx:for="{{evaluationTags}}"
+          wx:key="name"
+          class="tag tag-button {{item.selected ? 'selected' : ''}}"
+          data-name="{{item.name}}"
+          bindtap="toggleEvaluation"
+        >
+          {{item.name}}
+        </button>
+      </view>
+      <button class="secondary-button" bindtap="submitEvaluation">提交评价</button>
+    </view>
+
     <view class="section-title">申请继续深聊</view>
     <view class="invite-card card">
       <textarea
         class="textarea invite-input"
         maxlength="400"
         value="{{inviteReason}}"
-        placeholder="写下你欣赏这段表达的原因，以及你想继续聊的具体问题。至少 20 字。"
+        placeholder="写下你欣赏这段表达的原因，以及你想继续聊的具体问题。"
         bindinput="onReasonInput"
       />
+      <view class="invite-count {{inviteReasonLength >= minInviteReasonLength ? 'ready' : ''}}">
+        {{inviteReasonLength}} / {{minInviteReasonLength}} 字
+      </view>
       <button class="primary-button" bindtap="sendInvite">发送同频邀请</button>
-      <button class="secondary-button" bindtap="writeAnswer">我也想回答这个问题</button>
+      <button class="secondary-button" bindtap="writeAnswer">回答这个提问者</button>
     </view>
 
     <view class="section-title">媒介边界</view>

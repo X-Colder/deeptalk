@@ -3,7 +3,8 @@ const { cloudConfig } = require('./utils/config');
 App({
   globalData: {
     cloudReady: false,
-    useMock: true
+    useMock: true,
+    profile: null
   },
 
   onLaunch() {
@@ -19,5 +20,18 @@ App({
 
     this.globalData.cloudReady = true;
     this.globalData.useMock = false;
+
+    wx.cloud.callFunction({
+      name: 'users',
+      data: {
+        action: 'getOrCreate'
+      }
+    }).then((res) => {
+      if (res.result && res.result.ok) {
+        this.globalData.profile = res.result.data;
+      }
+    }).catch(() => {
+      this.globalData.profile = null;
+    });
   }
 });

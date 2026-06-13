@@ -84,11 +84,18 @@
 }
 
 .question-title {
-  margin-top: 18rpx;
+  margin-top: 12rpx;
   color: #223633;
   font-size: 32rpx;
   line-height: 1.48;
   font-weight: 750;
+}
+
+.question-author {
+  margin-top: 16rpx;
+  color: #596863;
+  font-size: 23rpx;
+  line-height: 1.4;
 }
 
 .question-intro {

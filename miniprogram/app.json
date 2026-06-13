@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/question/question",
     "pages/compose/compose",
-    "pages/letter/letter"
+    "pages/letter/letter",
+    "pages/profile/profile"
   ],
   "window": {
     "navigationBarTitleText": "DeepTalk",
@@ -29,6 +30,10 @@
       {
         "pagePath": "pages/letter/letter",
         "text": "信件"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
       }
     ]
   },

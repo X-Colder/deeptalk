@@ -9,6 +9,23 @@ const db = cloud.database();
 function normalizeQuestion(item) {
   return {
     ...item,
+    visibility: item.visibility || 'public',
+    visibilityLabel: item.visibilityLabel || (item.visibility === 'private' ? '私密深聊' : '公开问答'),
+    authorName: item.authorName || (item.authorSnapshot && item.authorSnapshot.nickname) || '匿名提问者',
+    authorSnapshot: item.authorSnapshot || {
+      profileId: item.profileId,
+      nickname: item.authorName || '匿名提问者',
+      trustScore: 60,
+      portraitSummary: '画像将根据持续提问、回答和他人评价生成。'
+    },
+    communityTags: item.communityTags || item.qualityTags || [],
+    featuredAnswer: item.featuredAnswer || {
+      answerId: '',
+      userName: '等待回答',
+      style: '尚未形成评价',
+      communityTags: [],
+      text: '这个问题还在等待第一个认真回答。'
+    },
     createdAt: formatTime(item.createdAt)
   };
 }
@@ -46,6 +63,8 @@ exports.main = async (event) => {
 
   return {
     ok: true,
-    data: result.data.map(normalizeQuestion)
+    data: result.data
+      .filter((item) => item.visibility !== 'private')
+      .map(normalizeQuestion)
   };
 };

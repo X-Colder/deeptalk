@@ -1,0 +1,14 @@
+{
+  "name": "deeptalk",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "check": "node scripts/check.js",
+    "deploy:cloud": "node scripts/deploy-cloud.js",
+    "test:miniprogram": "node scripts/miniprogram-smoke-test.js",
+    "verify": "npm run check && npm run deploy:cloud && npm run test:miniprogram"
+  },
+  "devDependencies": {
+    "miniprogram-automator": "^0.12.1"
+  }
+}

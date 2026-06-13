@@ -21,7 +21,12 @@ Page({
     return callCloud('questions', { action: 'list' })
       .then((res) => {
         this.setData({
-          questions: res.data || [],
+          questions: (res.data || []).map((item) => ({
+            ...item,
+            authorDisplay: item.authorName || (item.authorSnapshot && item.authorSnapshot.nickname) || '匿名提问者',
+            visibilityLabel: item.visibilityLabel || (item.visibility === 'private' ? '私密深聊' : '公开问答'),
+            communityTags: item.communityTags || item.qualityTags || []
+          })),
           loading: false
         });
       })

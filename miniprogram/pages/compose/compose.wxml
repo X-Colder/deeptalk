@@ -23,9 +23,13 @@
       class="topic-input"
       maxlength="60"
       value="{{topic}}"
-      placeholder="{{activeMode === '提出问题' ? '写下一个值得讨论的问题' : '你正在回应哪个问题'}}"
+      placeholder="{{activeMode === '提出问题' ? '写下一个值得讨论的问题' : '请先从问题详情选择提问者'}}"
       bindinput="onTopicInput"
     />
+    <view wx:if="{{activeMode === '回答问题' && selectedQuestion}}" class="selected-question">
+      <view class="selected-title">正在回答：{{selectedQuestion.authorName}}</view>
+      <view class="selected-desc">{{selectedQuestion.title}}</view>
+    </view>
     <textarea
       class="textarea main-textarea"
       maxlength="1200"
@@ -40,17 +44,23 @@
     </view>
   </view>
 
-  <view class="section-title">表达质量标签</view>
-  <view class="tag-row quality-tags">
+  <view wx:if="{{activeMode === '提出问题'}}" class="section-title">问题可见性</view>
+  <view wx:if="{{activeMode === '提出问题'}}" class="visibility-card card">
     <button
-      wx:for="{{availableTags}}"
-      wx:key="name"
-      class="tag tag-button {{item.selected ? 'selected' : ''}}"
-      data-tag="{{item.name}}"
-      bindtap="toggleTag"
+      wx:for="{{visibilityOptions}}"
+      wx:key="key"
+      class="visibility-option {{visibility === item.key ? 'active' : ''}}"
+      data-visibility="{{item.key}}"
+      bindtap="selectVisibility"
     >
-      {{item.name}}
+      <view class="visibility-name">{{item.name}}</view>
+      <view class="visibility-desc">{{item.desc}}</view>
     </button>
+  </view>
+
+  <view class="section-title">标签与画像</view>
+  <view class="muted-box">
+    表达质量标签不由自己选择。发布后会根据读者评价、被邀请情况和问答内容，逐步形成你的沟通画像。
   </view>
 
   <view class="section-title">多媒体接入</view>

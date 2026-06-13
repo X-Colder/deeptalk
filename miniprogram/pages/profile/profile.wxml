@@ -1,0 +1,105 @@
+<view class="page profile-page">
+  <view wx:if="{{loading}}" class="muted-box">正在整理你的表达档案。</view>
+
+  <block wx:if="{{profile}}">
+    <view class="profile-hero card">
+      <view class="identity-row">
+        <view class="avatar-mark">{{profile.avatarInitial}}</view>
+        <view class="identity-main">
+          <view wx:if="{{!editing}}" class="nickname">{{profile.nickname}}</view>
+          <input
+            wx:else
+            class="nickname-input"
+            value="{{draft.nickname}}"
+            maxlength="18"
+            bindinput="onNicknameInput"
+          />
+          <view class="status-line">状态：{{profile.statusLabel}} · {{profile.role}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{!editing}}" class="bio">{{profile.bio}}</view>
+      <textarea
+        wx:else
+        class="bio-input"
+        value="{{draft.bio}}"
+        maxlength="120"
+        bindinput="onBioInput"
+      />
+
+      <view class="profile-actions">
+        <button wx:if="{{!editing}}" class="secondary-button" bindtap="startEdit">编辑档案</button>
+        <button wx:if="{{editing}}" class="secondary-button" bindtap="cancelEdit">取消</button>
+        <button wx:if="{{editing}}" class="primary-button" bindtap="saveProfile">保存</button>
+      </view>
+    </view>
+
+    <view class="metrics-grid">
+      <view class="metric-card card">
+        <text class="metric-value">{{profile.trustScore}}</text>
+        <text class="metric-label">沟通信誉</text>
+      </view>
+      <view class="metric-card card">
+        <text class="metric-value">{{profile.inviteQuota}}</text>
+        <text class="metric-label">今日邀请</text>
+      </view>
+      <view class="metric-card card">
+        <text class="metric-value">{{profile.liveStats.answers}}</text>
+        <text class="metric-label">认真回答</text>
+      </view>
+    </view>
+
+    <view class="section-title">用户画像</view>
+    <view class="portrait-card card">
+      <view class="portrait-title">内容总结画像</view>
+      <view class="portrait-text">{{profile.portraitSummary}}</view>
+      <view class="portrait-source">{{profile.evaluationSource}}</view>
+    </view>
+
+    <view class="section-title">价值观标签</view>
+    <view class="tag-row">
+      <text wx:for="{{profile.valuesTags}}" wx:key="*this" class="tag">{{item}}</text>
+    </view>
+
+    <view class="section-title">沟通特质</view>
+    <view class="tag-row">
+      <text wx:for="{{profile.communicationTags}}" wx:key="*this" class="tag blue">{{item}}</text>
+    </view>
+
+    <view class="section-title">我的边界</view>
+    <view class="boundary-card card">
+      <view wx:for="{{profile.boundaries}}" wx:key="*this" class="boundary-row">
+        <text class="dot"></text>
+        <text>{{item}}</text>
+      </view>
+    </view>
+
+    <view class="section-title">表达统计</view>
+    <view class="stats-card card">
+      <view class="stat-row">
+        <text>提出问题</text>
+        <text>{{profile.liveStats.questions}}</text>
+      </view>
+      <view class="stat-row">
+        <text>认真回答</text>
+        <text>{{profile.liveStats.answers}}</text>
+      </view>
+      <view class="stat-row">
+        <text>发起深聊邀请</text>
+        <text>{{profile.liveStats.invitesSent}}</text>
+      </view>
+      <view class="stat-row muted">
+        <text>被举报次数</text>
+        <text>{{profile.stats.reports}}</text>
+      </view>
+    </view>
+
+    <view class="section-title">权限规则</view>
+    <view class="permission-list">
+      <view wx:for="{{permissionCards}}" wx:key="title" class="permission-card card">
+        <view class="permission-title">{{item.title}}</view>
+        <view class="permission-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </block>
+</view>
